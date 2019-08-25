@@ -1,0 +1,55 @@
+version: 1
+network-id: 1
+identity: test123
+owner: "1AI33XTF43BFOENIIDPGMYCV4SSRLEL3RYTNQXDFTZRL23RO72S5MS==="
+datadir: "./testdata"
+registries:
+  test:
+    service:
+      link:
+      meta:
+    controller:
+      link:
+      meta:
+      params:
+    provider: ""
+debug: true
+debug-runtime: true
+network:
+  port: 8080
+  api-port: 8090
+  init-peers: ["172.25.0.80:8080"]
+  broadcast-addrs: ["0.0.0.0:8080","172.25.0.80:8080","192.168.0.35:8080"]
+  link-nodes: []
+policy:
+  asset:
+    max-asset-size: 10000
+    retriever: 
+      max-conn-per-file: 5
+      max-concurrent-retriever: 5
+    uploader:
+      max-concurrent-uploader: 50
+  runtime:
+    max-running-service: 2
+    max-concurrent-calls:
+      service: 10
+      function: 50
+    allow-runtime-types: ["js","webasm", "container"]
+  network:  
+    providers:
+      min: 5
+      max: 10
+      latency: 200
+    clients:
+      max: 10
+      latency: 20
+log-config:
+  logger:
+    endpoint-type: ""
+    endpoint: ""
+  functional:
+    enable: true
+    endpoint: ""
+  service:
+    enable: true
+    endpoint: ""

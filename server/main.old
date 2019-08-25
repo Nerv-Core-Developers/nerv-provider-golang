@@ -1,0 +1,130 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"os"
+	"path/filepath"
+	"runtime"
+	"runtime/debug"
+	"time"
+
+	"github.com/gdamore/tcell"
+	"github.com/naokichau/nerv/nerv-node/common"
+	"github.com/naokichau/nerv/nerv-node/nervrt"
+	"github.com/naokichau/nerv/nerv-node/tui"
+
+	"github.com/naokichau/nerv/nerv-node/controller"
+	"github.com/naokichau/nerv/nerv-node/nervnet/netutils"
+	uuid "github.com/satori/go.uuid"
+
+	"github.com/naokichau/nerv/nerv-node/logger"
+	"github.com/naokichau/nerv/nerv-node/nervnet"
+)
+
+func initNode(cfg *common.YamlConfigure) {
+	var nodeID string
+	if cfg.Identity != "" {
+		nodeID = uuid.NewV3(uuid.NamespaceX500, cfg.Identity).String()
+	} else {
+		nodeID = uuid.NewV4().String()
+	}
+	nodeInfo := &common.NodeInfo{
+		NodeID: nodeID,
+		Cfg:    cfg,
+	}
+	nodeInfo.NetworkInfo.BroadcastAddrs = netutils.GetBroadcastableAddrs(cfg.Network.BroadcastAddrs, cfg.Network.Port)
+	nodeInfo.NetworkInfo.Port = cfg.Network.Port
+
+	nvNet := &nervnet.Nervnet{
+		Params: nervnet.NervnetParams{
+			Port: cfg.Network.Port,
+			Node: nodeInfo,
+		},
+	}
+
+	nervRT := &nervrt.NervRuntime{
+		Params: nervrt.NervRuntimeParams{
+			Node: nodeInfo,
+		},
+	}
+
+	ctrl := &controller.Controller{
+		Params: controller.ControllerParams{
+			Node:    nodeInfo,
+			Nervnet: nvNet,
+			NervRT:  nervRT,
+		},
+	}
+
+	nvNet.Params.Controller = ctrl
+
+	nervRT.Init()
+	ctrl.Init()
+	nvNet.Init()
+}
+
+func main() {
+
+	// 	print(` _   _ ______ _______      __
+	// | \ | |  ____|  __ \ \    / /
+	// |  \| | |__  | |__) \ \  / /
+	// | .   |  __| |  _  / \ \/ /
+	// | |\  | |____| | \ \  \  /
+	// |_| \_|______|_|  \_\  \/
+	// `)
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	debug.SetGCPercent(100)
+	configFilePtr := flag.String("config", "./config.yaml", "path to config file")
+	flag.Parse()
+
+	// c := color.New(color.FgBlue, color.Bold)
+	println("[nerv-node]", "["+fmt.Sprintf("CTRL: %d | NNET: %d | NRT: %d", controller.Version, nervnet.Version, nervrt.Version)+"]", "\n")
+
+	cfg, err := loadConfig(*configFilePtr)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	logger.InitLogger(cfg.DataDir, &cfg.Logger)
+	if err = systemCheck(cfg); err != nil {
+		logger.Fatal(common.ErrUnexpected.NewDetail("System doesn't satify requirement to run your config "+err.Error()), common.LogLvl1)
+	}
+	initStorageFolder(cfg.DataDir)
+	fmt.Println("Initializing TUI...")
+
+	err = tui.SetupTUI(exitEventHandler)
+	if err != nil {
+		panic(err)
+		return
+	}
+	time.AfterFunc(1*time.Second, func() {
+		go logger.StartLogRecorder(tui.MainLog)
+		go initNode(cfg)
+	})
+
+	tui.StartTUI()
+}
+func initStorageFolder(dataDir string) {
+	fmt.Println("Initializing storage...")
+	if err := os.MkdirAll(filepath.Dir(dataDir), os.ModePerm); err != nil {
+		panic(err)
+	}
+	if err := os.MkdirAll(filepath.Dir(dataDir+"/storage"), os.ModePerm); err != nil {
+		panic(err)
+	}
+	if err := os.MkdirAll(filepath.Dir(dataDir+"/web"), os.ModePerm); err != nil {
+		panic(err)
+	}
+	return
+}
+
+func exitEventHandler(event *tcell.EventKey) *tcell.EventKey {
+	if event.Key() == tcell.KeyCtrlC {
+		tui.App.Stop()
+
+		fmt.Println("\nStopping nerv-node...")
+		os.Exit(1)
+	}
+	return event
+}

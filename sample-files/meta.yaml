@@ -1,0 +1,9 @@
+version: 1
+owner: 
+files:
+  functionals:
+    - "FILE_NAME:VERSION:BASE58_HASH:BASE58_SIG"
+  services:
+    - "FILE_NAME:VERSION:BASE58_HASH:BASE58_SIG"
+  assets:
+    - "FILE_NAME:VERSION:BASE58_HASH:BASE58_SIG"

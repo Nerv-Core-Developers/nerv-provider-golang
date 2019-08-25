@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: naokichau/nerv-dev:latest
+    working_directory: /go/src/github.com/naokichau/nerv-provider-golang
+    steps:
+      - checkout
+      - run: ./scripts/circleci-prepare.sh
+      - run: ./scripts/circleci-build.sh
+      - run: ./scripts/circleci-test.sh
+workflows:
+  version: 2
+  builds:
+    jobs:
+      - build

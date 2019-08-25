@@ -1,0 +1,11 @@
+namespace schema;
+
+enum NodeType:byte {Provider= 0 , Client}
+enum IDType:byte {User = 0, Asset, Function, Service}
+enum ConnectionType:byte {Direct = 0, Bridge}
+enum ConnectionProtocol:byte {TCP = 0 }
+
+table SchemaVersion {
+    Msg:int = 1;
+    Runtime:int = 1;
+}

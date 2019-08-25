@@ -1,0 +1,20 @@
+namespace schema;
+
+enum RuntimeType:byte {JS = 0 , WebASM , Container }
+
+table RuntimeCall{
+    CallNNA:[ubyte];
+    ID:[ubyte];
+    Params:[RuntimeCallParams];
+}
+
+table RuntimeCallParams {
+    Input:[ubyte];
+    Timeout:uint64;
+}
+
+table RuntimeOutput {
+    Status:int;
+    Result:[ubyte];
+    Log:[ubyte];
+}

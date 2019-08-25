@@ -1,0 +1,55 @@
+include "runtime.fbs";
+namespace schema;
+
+enum MsgType:byte { Query = 0, ToProvider, ToClient, CallRuntime, PubsubCmd, PubsubResponse, Respond }
+
+enum PubsubCmd:byte {Sub = 0, Unsub , PubAll, PubSpec, ListTopic, ListSubInTopic, WatchTopicSub }
+
+table Msg {
+    ID:[ubyte];
+	Type:MsgType = Query;
+	Content:[ubyte];
+	Time:uint64 = 0;
+	Sender:string;
+	Private:bool = false;
+	Signature:string;
+}
+
+table MsgQueryContent {
+	ID:[ubyte];
+	WantRetrieve:bool;
+}
+
+table MsgToNodeContent {
+	NNA:[ubyte];
+	Data:[ubyte];
+}
+
+table MsgCallRuntimeContent {
+	Caller:[ubyte];
+	Call:RuntimeCall;
+}
+
+table MsgPubsubCmd {
+	ID:string;
+	Topic:string;
+	Cmd:PubsubCmd;
+	Data:[ubyte];
+}
+
+table MsgPubsub {
+	ID:string;
+	Topic:string;
+	Data:[ubyte];
+}
+
+table MsgRespondContent {
+	NNA:[ubyte];
+	Status:bool;
+	Data:[ubyte];
+}
+
+table PubsubCmdResult {
+	Success: bool;
+	Content:[ubyte];
+}

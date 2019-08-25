@@ -1,0 +1,8 @@
+namespace schema;
+
+table ObjectMeta {
+    ID:[ubyte];
+    Hash:[ubyte];
+    Owner:[ubyte];
+    Sig:[ubyte];
+}

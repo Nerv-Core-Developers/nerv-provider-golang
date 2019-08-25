@@ -1,0 +1,77 @@
+version: '2.1'
+services:
+  nerv-provider-1:
+    image: naokichau/nerv-dev:latest
+    container_name: nerv-provider-1
+    environment:
+    - DEVENV=true
+    volumes:
+      - "./:/go/src/github.com/naokichau/nerv-provider-golang"
+      - "./dev-env/envs:/envs"
+      # - "../../../devdata/node1:/nervdata"
+      # - "../../../tests/functions-binary:/functions/binary"
+      # - "../../../tests/functions-image:/functions/container"
+      # - "../../../tests/namespaces:/namespaces"
+    entrypoint:
+      - "/go/src/github.com/naokichau/nerv-provider-golang/scripts/get_dep.sh"
+    working_dir: /go/src/github.com/naokichau/nerv-provider-golang
+    ports:
+     - "8080:8080"
+     - "9009:9009"
+    networks:
+      netlayer:
+        ipv4_address: 172.25.0.80
+        ipv6_address: 2001:3984:3989::80
+  nerv-provider-2:
+    image: alpine:3.7
+    container_name: nerv-provider-2
+    volumes:
+      - "./build:/nerv-provider"
+      - "./dev-env/envs:/envs"
+    working_dir: /nerv-provider
+    command: tail -f /dev/null
+    ports:
+     - "8081:9000"
+    networks:
+      netlayer:
+        ipv4_address: 172.25.0.81
+        ipv6_address: 2001:3984:3989::81
+  nerv-provider-3:
+    image: alpine:3.7
+    container_name: nerv-provider-3
+    volumes:
+      - "./build:/nerv-provider"
+      - "./dev-env/envs:/envs"
+    working_dir: /nerv-provider
+    command: tail -f /dev/null
+    ports:
+     - "8082:9000"
+    networks:
+      netlayer:
+        ipv4_address: 172.25.0.82
+        ipv6_address: 2001:3984:3989::82
+  nerv-provider-4:
+    image: alpine:3.7
+    container_name: nerv-provider-4
+    volumes:
+      - "./build:/nerv-provider"
+      - "./dev-env/envs:/envs"
+    command: tail -f /dev/null
+    working_dir: /nerv-provider
+    ports:
+     - "8083:9000"
+    networks:
+      netlayer:
+        ipv4_address: 172.25.0.83
+        ipv6_address: 2001:3984:3989::83
+networks:
+  netlayer:    
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.25.0.0/24
+      -
+        subnet: 2001:3984:3989::/64
