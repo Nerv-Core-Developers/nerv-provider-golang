@@ -44,7 +44,7 @@ fi
 echo "\033[32mdeployed ✔\033[0m"
 
 echo "Dev environment is ready! 🎉  🎉  🎉"
-echo "To start a node: run '\033[34mdocker exec -it nerv-provider-1 sh\033[0m' and run '\033[34m./scripts/build.sh && ./server -config /envs/env1.yaml\033[0m'."
+echo "To start a node: run '\033[34mdocker exec -it nerv-provider-1 sh\033[0m' and run '\033[34m./scripts/build.sh && ./build/server -config /envs/env1.yaml\033[0m'."
 echo "Open 3 more terminal and run '\033[34mdocker exec -it nerv-provider-<NODE_NUMBER> sh\033[0m' -> '\033[34m./server -config /envs/env2.yaml\033[0m'."
 echo "\033[31m\nNOTE:\033[0m   - You might need to wait for dev container to get all the Go dependencies before you can 'Go for a Run'.
         - If you install new go package you need to install it inside the container."

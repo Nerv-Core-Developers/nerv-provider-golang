@@ -8,10 +8,7 @@ services:
     volumes:
       - "./:/go/src/github.com/naokichau/nerv-provider-golang"
       - "./dev-env/envs:/envs"
-      # - "../../../devdata/node1:/nervdata"
-      # - "../../../tests/functions-binary:/functions/binary"
-      # - "../../../tests/functions-image:/functions/container"
-      # - "../../../tests/namespaces:/namespaces"
+      - "./dev-data/node1:/data"
     entrypoint:
       - "/go/src/github.com/naokichau/nerv-provider-golang/scripts/get_dep.sh"
     working_dir: /go/src/github.com/naokichau/nerv-provider-golang
@@ -28,6 +25,7 @@ services:
     volumes:
       - "./build:/nerv-provider"
       - "./dev-env/envs:/envs"
+      - "./dev-data/node2:/data"
     working_dir: /nerv-provider
     command: tail -f /dev/null
     ports:
@@ -42,6 +40,7 @@ services:
     volumes:
       - "./build:/nerv-provider"
       - "./dev-env/envs:/envs"
+      - "./dev-data/node3:/data"
     working_dir: /nerv-provider
     command: tail -f /dev/null
     ports:
@@ -56,6 +55,7 @@ services:
     volumes:
       - "./build:/nerv-provider"
       - "./dev-env/envs:/envs"
+      - "./dev-data/node4:/data"
     command: tail -f /dev/null
     working_dir: /nerv-provider
     ports:

@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/naokichau/nerv-provider-golang/shared"
+	"github.com/naokichau/nerv-provider-golang/shared/utils"
 )
 
 // Create isolate env to run service
@@ -17,10 +17,10 @@ func cg() {
 	cgroups := "/sys/fs/cgroup/"
 	pids := filepath.Join(cgroups, "pids")
 	os.Mkdir(filepath.Join(pids, "nervrt"), 0755)
-	shared.Must(ioutil.WriteFile(filepath.Join(pids, "nervrt/pids.max"), []byte("20"), 0700))
+	utils.Must(ioutil.WriteFile(filepath.Join(pids, "nervrt/pids.max"), []byte("20"), 0700))
 	// Removes the new cgroup in place after the container exits
-	shared.Must(ioutil.WriteFile(filepath.Join(pids, "nervrt/notify_on_release"), []byte("1"), 0700))
-	shared.Must(ioutil.WriteFile(filepath.Join(pids, "nervrt/cgroup.procs"), []byte(strconv.Itoa(os.Getpid())), 0700))
+	utils.Must(ioutil.WriteFile(filepath.Join(pids, "nervrt/notify_on_release"), []byte("1"), 0700))
+	utils.Must(ioutil.WriteFile(filepath.Join(pids, "nervrt/cgroup.procs"), []byte(strconv.Itoa(os.Getpid())), 0700))
 }
 
 func child() {
@@ -32,16 +32,16 @@ func child() {
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
-	shared.Must(syscall.Sethostname([]byte("container")))
-	shared.Must(syscall.Chroot("/nervrt"))
-	shared.Must(os.Chdir("/"))
-	shared.Must(syscall.Mount("proc", "proc", "proc", 0, ""))
-	shared.Must(syscall.Mount("thing", "mytemp", "tmpfs", 0, ""))
+	utils.Must(syscall.Sethostname([]byte("container")))
+	utils.Must(syscall.Chroot("/nervrt"))
+	utils.Must(os.Chdir("/"))
+	utils.Must(syscall.Mount("proc", "proc", "proc", 0, ""))
+	utils.Must(syscall.Mount("thing", "mytemp", "tmpfs", 0, ""))
 
-	shared.Must(cmd.Run())
+	utils.Must(cmd.Run())
 
-	shared.Must(syscall.Unmount("proc", 0))
-	shared.Must(syscall.Unmount("thing", 0))
+	utils.Must(syscall.Unmount("proc", 0))
+	utils.Must(syscall.Unmount("thing", 0))
 }
 func run() {
 	fmt.Printf("Running %v \n", os.Args[2:])
@@ -55,5 +55,5 @@ func run() {
 		Unshareflags: syscall.CLONE_NEWNS,
 	}
 
-	shared.Must(cmd.Run())
+	utils.Must(cmd.Run())
 }
