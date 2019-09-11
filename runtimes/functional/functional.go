@@ -1,8 +1,8 @@
 package functional
 
 import (
-	"github.com/naokichau/nerv-provider-golang/shared"
-	"github.com/naokichau/nerv-provider-golang/shared/schema"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/schema"
 )
 
 type FunctionInstance struct {

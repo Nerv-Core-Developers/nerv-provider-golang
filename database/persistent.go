@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	badger "github.com/dgraph-io/badger"
-	"github.com/naokichau/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
 )
 
 type DBpersistent struct {

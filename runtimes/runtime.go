@@ -4,9 +4,10 @@ import (
 	"errors"
 	"io/ioutil"
 
-	"github.com/naokichau/nerv-provider-golang/shared/schema"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/schema"
 
-	"github.com/naokichau/nerv-provider-golang/runtimes/functional"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/runtimes/functional"
 )
 
 func (rt *NervRuntime) Init() error {
@@ -15,7 +16,7 @@ func (rt *NervRuntime) Init() error {
 	return nil
 }
 
-func (rt *NervRuntime) RunFunction(fnLink string, fnType schema.RuntimeType, data []byte) (*schema.RuntimeOutput, error) {
+func (rt *NervRuntime) RunFunction(fnLink string, fnType schema.RuntimeType, data []byte) (*shared.RuntimeOutput, error) {
 	// fnInfo, err := rt.Params.Controller.GetFunctionInfo(fnHash)
 	// if err != nil {
 	// 	return nil, err
@@ -38,6 +39,10 @@ func (rt *NervRuntime) RunFunction(fnLink string, fnType schema.RuntimeType, dat
 	default:
 		return nil, errors.New("Unknown function type")
 	}
+}
+
+func (rt *NervRuntime) RunSequence() error {
+	return nil
 }
 
 func (rt *NervRuntime) StartService() error {

@@ -4,9 +4,9 @@ import (
 	"mime/multipart"
 	"net/http"
 
-	"github.com/naokichau/nerv-provider-golang/shared/nna"
-	"github.com/naokichau/nerv-provider-golang/shared/noid"
-	"github.com/naokichau/nerv-provider-golang/shared/schema"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/nna"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/noid"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/schema"
 )
 
 type DatabaseCacheInterface interface {
@@ -53,7 +53,7 @@ type NetworkInterface interface {
 
 type RuntimeInterface interface {
 	Init() error
-	RunFunction(fnLink string, fnType schema.RuntimeType, data []byte) (*schema.RuntimeOutput, error)
+	RunFunction(fnLink string, fnType schema.RuntimeType, data []byte) (*RuntimeOutput, error)
 	StartService() error
 	Version() int
 }

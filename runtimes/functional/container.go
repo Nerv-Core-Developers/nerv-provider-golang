@@ -5,11 +5,11 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/naokichau/nerv-provider-golang/shared/schema"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/schema"
 )
 
 func ContainerBootstrap(imageName string) error {
-	cmd := exec.Command("singularity", "instance.start", "docker://naokichau/test1", "test1")
+	cmd := exec.Command("singularity", "instance.start", "docker://Nerv-Core-Developers/test1", "test1")
 	if err := cmd.Start(); err != nil {
 		return err
 	}

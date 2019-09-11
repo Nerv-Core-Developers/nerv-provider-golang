@@ -6,8 +6,8 @@ import (
 	"sync"
 
 	flatbuffers "github.com/google/flatbuffers/go"
-	"github.com/naokichau/nerv-provider-golang/shared/schema"
-	"github.com/naokichau/nerv-provider-golang/shared/utils"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/schema"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/utils"
 )
 
 //only support single level topic

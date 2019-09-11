@@ -3,9 +3,9 @@ package shared
 import (
 	"archive/zip"
 
-	"github.com/naokichau/nerv-provider-golang/shared/nna"
-	"github.com/naokichau/nerv-provider-golang/shared/noid"
-	"github.com/naokichau/nerv-provider-golang/shared/schema"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/nna"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/noid"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/schema"
 )
 
 type NodeCfg struct {
@@ -78,4 +78,10 @@ type NodeVersion struct {
 type DBPatch struct {
 	Key  string
 	Data interface{}
+}
+
+type RuntimeOutput struct {
+	Status bool
+	Result string
+	Logs   []string
 }

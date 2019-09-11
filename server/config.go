@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/naokichau/nerv-provider-golang/shared"
-	"github.com/naokichau/nerv-provider-golang/shared/utils"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/utils"
 	"gopkg.in/yaml.v2"
 )
 

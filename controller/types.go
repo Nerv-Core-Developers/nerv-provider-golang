@@ -1,6 +1,6 @@
 package controller
 
-import "github.com/naokichau/nerv-provider-golang/shared"
+import "github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
 
 type Controller struct {
 	Node   *shared.NodeCfg

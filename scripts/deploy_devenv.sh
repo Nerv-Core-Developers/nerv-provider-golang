@@ -81,7 +81,7 @@ printf "Windows dev-env is currently not available!"
 # echo -e "\e[32mdeployed\e[0m"
 
 # echo -e "Dev environment is ready!"
-# echo "To start a node: run '\e[34mdocker exec -it nerv-node-NODE_NUMBER sh\e[0m' and run '\e[34mcd /go/src/github.com/naokichau/nerv-provider-golang\e[0m' then run '\e[34mgo run server.go\e[0m'."
+# echo "To start a node: run '\e[34mdocker exec -it nerv-node-NODE_NUMBER sh\e[0m' and run '\e[34mcd /go/src/github.com/Nerv-Core-Developers/nerv-provider-golang\e[0m' then run '\e[34mgo run server.go\e[0m'."
 # echo "\e[31m\nNOTE:\e[0m   - You might need to wait for dev containers to get all the Go dependencies before you can 'Go for a Run'.
 #         - If you install new go package you need to install it inside the container."
 # echo -e "\nSadly coding :_("

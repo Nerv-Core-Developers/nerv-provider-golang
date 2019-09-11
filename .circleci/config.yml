@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: naokichau/nerv-dev:latest
-    working_directory: /go/src/github.com/naokichau/nerv-provider-golang
+    working_directory: /go/src/github.com/Nerv-Core-Developers/nerv-provider-golang
     steps:
       - checkout
       - run: ./scripts/circleci-prepare.sh

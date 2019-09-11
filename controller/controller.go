@@ -4,8 +4,8 @@ import (
 	"mime/multipart"
 	"net/http"
 
-	"github.com/naokichau/nerv-provider-golang/shared"
-	"github.com/naokichau/nerv-provider-golang/shared/noid"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/noid"
 )
 
 func (ctrl *Controller) Init() error {

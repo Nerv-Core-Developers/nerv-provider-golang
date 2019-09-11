@@ -1,6 +1,6 @@
 package service
 
-import "github.com/naokichau/nerv-provider-golang/shared"
+import "github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
 
 type ServiceInstance struct {
 	Type int

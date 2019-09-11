@@ -14,7 +14,7 @@ table RuntimeCallParams {
 }
 
 table RuntimeOutput {
-    Status:int;
+    Status:bool;
     Result:[ubyte];
     Log:[ubyte];
 }

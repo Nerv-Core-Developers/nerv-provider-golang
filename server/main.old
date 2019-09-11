@@ -10,16 +10,16 @@ import (
 	"time"
 
 	"github.com/gdamore/tcell"
-	"github.com/naokichau/nerv/nerv-node/common"
-	"github.com/naokichau/nerv/nerv-node/nervrt"
-	"github.com/naokichau/nerv/nerv-node/tui"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/common"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/nervrt"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/tui"
 
-	"github.com/naokichau/nerv/nerv-node/controller"
-	"github.com/naokichau/nerv/nerv-node/nervnet/netutils"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/controller"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/nervnet/netutils"
 	uuid "github.com/satori/go.uuid"
 
-	"github.com/naokichau/nerv/nerv-node/logger"
-	"github.com/naokichau/nerv/nerv-node/nervnet"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/logger"
+	"github.com/Nerv-Core-Developers/nerv/nerv-node/nervnet"
 )
 
 func initNode(cfg *common.YamlConfigure) {

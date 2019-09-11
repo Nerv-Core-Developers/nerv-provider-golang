@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	sample "github.com/naokichau/nerv-provider-golang/schemafbs/sample/MyGame/Sample"
+	sample "github.com/Nerv-Core-Developers/nerv-provider-golang/schemafbs/sample/MyGame/Sample"
 
 	flatbuffers "github.com/google/flatbuffers/go"
 )

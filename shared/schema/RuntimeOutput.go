@@ -26,16 +26,16 @@ func (rcv *RuntimeOutput) Table() flatbuffers.Table {
 	return rcv._tab
 }
 
-func (rcv *RuntimeOutput) Status() int32 {
+func (rcv *RuntimeOutput) Status() bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
-		return rcv._tab.GetInt32(o + rcv._tab.Pos)
+		return rcv._tab.GetBool(o + rcv._tab.Pos)
 	}
-	return 0
+	return false
 }
 
-func (rcv *RuntimeOutput) MutateStatus(n int32) bool {
-	return rcv._tab.MutateInt32Slot(4, n)
+func (rcv *RuntimeOutput) MutateStatus(n bool) bool {
+	return rcv._tab.MutateBoolSlot(4, n)
 }
 
 func (rcv *RuntimeOutput) Result(j int) byte {
@@ -109,8 +109,8 @@ func (rcv *RuntimeOutput) MutateLog(j int, n byte) bool {
 func RuntimeOutputStart(builder *flatbuffers.Builder) {
 	builder.StartObject(3)
 }
-func RuntimeOutputAddStatus(builder *flatbuffers.Builder, Status int32) {
-	builder.PrependInt32Slot(0, Status, 0)
+func RuntimeOutputAddStatus(builder *flatbuffers.Builder, Status bool) {
+	builder.PrependBoolSlot(0, Status, false)
 }
 func RuntimeOutputAddResult(builder *flatbuffers.Builder, Result flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(Result), 0)

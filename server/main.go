@@ -9,13 +9,13 @@ import (
 	"time"
 
 	"github.com/gdamore/tcell"
-	"github.com/naokichau/nerv-provider-golang/controller"
-	"github.com/naokichau/nerv-provider-golang/database"
-	"github.com/naokichau/nerv-provider-golang/logger"
-	"github.com/naokichau/nerv-provider-golang/network"
-	"github.com/naokichau/nerv-provider-golang/pubsub"
-	"github.com/naokichau/nerv-provider-golang/runtimes"
-	"github.com/naokichau/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/controller"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/database"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/logger"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/network"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/pubsub"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/runtimes"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
 	uuid "github.com/satori/go.uuid"
 )
 

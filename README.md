@@ -2,7 +2,7 @@
 
 [A decentralized cloud platform (NetworkOS)]
 
-[![CircleCI](https://circleci.com/gh/naokichau/nerv/tree/master.svg?style=svg)](https://circleci.com/gh/naokichau/nerv/tree/master)
+[![CircleCI](https://circleci.com/gh/Nerv-Core-Developers/nerv/tree/master.svg?style=svg)](https://circleci.com/gh/Nerv-Core-Developers/nerv/tree/master)
 
 <a name="important"></a>
 ### IMPORTANT\_NOTE

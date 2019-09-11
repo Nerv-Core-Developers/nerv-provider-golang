@@ -3,7 +3,7 @@ package runtimes
 import (
 	"sync"
 
-	"github.com/naokichau/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
 )
 
 type NervRuntime struct {

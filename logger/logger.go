@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/naokichau/nerv-provider-golang/shared"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared"
 )
 
 type logConfig struct {

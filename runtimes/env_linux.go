@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/naokichau/nerv-provider-golang/shared/utils"
+	"github.com/Nerv-Core-Developers/nerv-provider-golang/shared/utils"
 )
 
 // Create isolate env to run service

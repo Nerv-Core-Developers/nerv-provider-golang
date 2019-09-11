@@ -6,12 +6,12 @@ services:
     environment:
     - DEVENV=true
     volumes:
-      - "./:/go/src/github.com/naokichau/nerv-provider-golang"
+      - "./:/go/src/github.com/Nerv-Core-Developers/nerv-provider-golang"
       - "./dev-env/envs:/envs"
       - "./dev-data/node1:/data"
     entrypoint:
-      - "/go/src/github.com/naokichau/nerv-provider-golang/scripts/get_dep.sh"
-    working_dir: /go/src/github.com/naokichau/nerv-provider-golang
+      - "/go/src/github.com/Nerv-Core-Developers/nerv-provider-golang/scripts/get_dep.sh"
+    working_dir: /go/src/github.com/Nerv-Core-Developers/nerv-provider-golang
     ports:
      - "8080:8080"
      - "9009:9009"
